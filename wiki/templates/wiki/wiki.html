@@ -1,0 +1,14 @@
+<h1>Wikipedia szukanko</h1>
+
+<!-- search form -->
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Search">
+</form>
+
+<!-- search results -->
+{% for result in results %}
+  <h2>{{ result.term }}</h2>
+  {{ result.extract|safe }}
+{% endfor %}

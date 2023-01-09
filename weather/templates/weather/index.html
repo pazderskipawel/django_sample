@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block content %}
+    <form method="post">
+      {% csrf_token %}
+        <input type="text"  name="city" placeholder="Search">
+          <input type="submit" value="Szukaj">
+        </form>
+    {% if country_code and lon and lat and temp and pressure %}
+            <br>
+        Miasto: {{name}} <br>
+        Kraj: {{country_code}} <br>
+        Długość geograficzna: {{lon}} <br>
+        Szerokość geograficzna: {{lat}} <br>
+        Temperatura: {{temp}} <br>
+        Ciśnienie: {{pressure}} <br>
+
+    {% endif %}
+{% endblock %}

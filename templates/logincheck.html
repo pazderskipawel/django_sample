@@ -1,0 +1,6 @@
+{%if request.user.is_authenticated %}
+Witaj {{request.user}}<br>
+<a class="nav-link" href="../login/signout">Logout</a>
+{%else%}
+<h1>Jesteś niezalogowany<a class="nav-link" href="../login/">Login</a></h1>
+{%endif%}

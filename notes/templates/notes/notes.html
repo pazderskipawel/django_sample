@@ -1,0 +1,14 @@
+{% extends 'notes/index.html' %}
+{%block content%}
+<h1>Twoje notatki</h1>
+<table border='1'>
+{% for x in all %}
+    <tr>
+      <td>{{ x.title }}</td>
+      <td>{{ x.date }}</td>
+      <td>{{ x.content }}</td>
+    </tr>
+  {% endfor %}
+</table>
+<a href="./newnote"> Dodaj notatkę</a>
+{%endblock%}
