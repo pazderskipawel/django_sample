@@ -1,5 +1,5 @@
 # django_sample
-## django samples used to learn how to use django /n
+## django samples used to learn how to use django
 - **Login** - is a basic login and register app
 - **Notes** - is an app to read and write notes
 - **Polls** - is an app from django official tutorial 
