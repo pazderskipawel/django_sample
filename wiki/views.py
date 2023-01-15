@@ -1,6 +1,6 @@
 import requests
 from django.shortcuts import render
-
+from itertools import combinations
 from wiki.forms import SearchForm
 
 
@@ -11,34 +11,35 @@ def wiki_view(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             query = form.cleaned_data['query']
-            terms = query.split()  # split the query into a list of search terms
+            words = query.split()  # split the query into a list of search terms
+            terms = []
+            for i in range(1, len(words) + 1):
+                for comb in combinations(words, i):
+                    terms.append(" ".join(comb).capitalize())
+            print(terms)
+            # https://www.mediawiki.org/wiki/API:Query <- documentation
+            url = f"https://pl.wikipedia.org/w/api.php?action=query&format=json&utf8=1&formatversion=2&prop=extracts&exintro=1&explaintext=1&titles={'|'.join(terms)}"
+            response = requests.get(url)
+            data = response.json()
+            print(data)
             results = []
-            for term in terms:
-                url = f'https://pl.wikipedia.org/w/api.php?action=query&format=json&utf8=1&formatversion=2&prop=extracts&exlimit=1&exintro=1&explaintext=1&titles={term}'
-                response = requests.get(url)
-                data = response.json()
-                if 'pages' in data['query']:
-                    # handle the case where there are search results
-                    if isinstance(data['query']['pages'], list):
-                        # handle the case where data['query']['pages'] is a list
-                        for page in data['query']['pages']:
-                            if 'extract' in page:
-                                extract = page['extract']
-                            else:
-                                # handle the case where the 'extract' field is not present
-                                extract = 'Nie znaleziono wyniku'
-                            results.append({'term': term, 'extract': extract})
+            if 'pages' in data['query']:
+                found_terms = set()
+                for page in data['query']['pages']:
+                    print(page)
+                    if 'extract' in page:
+                         extract = page['extract']
+                         title = page['title']
+                         found_terms.add(title)
+                         results.append({'term': title, 'extract': extract})
                     else:
-                        # handle the case where data['query']['pages'] is a dictionary
-                        if 'extract' in next(iter(data['query']['pages'].values())):
-                            extract = next(iter(data['query']['pages'].values()))['extract']
-                        else:
-                            # handle the case where the 'extract' field is not present
-                            extract = 'Nie znaleziono wyniku'
-                        results.append({'term': term, 'extract': extract})
-                else:
-                    # handle the case where there are no search results
+                         continue
+                not_found_terms = set(terms) - found_terms
+                for term in not_found_terms:
                     results.append({'term': term, 'extract': 'Nie znaleziono wyniku'})
+            else:
+                # handle the case where there are no search results
+                results.append({'term': 'Nie znaleziono wyniku', 'extract': 'Nie znaleziono wyniku'})
         else:
             results = []
     else:
