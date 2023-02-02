@@ -1,10 +1,10 @@
 {% extends 'index.html' %}
 {% block content %}
 <div class="container py-5">
-  <h1>Login</h1>
-  <form method="POST">
+  <h1 align="center">Login</h1>
+  <form align="center" method="POST">
     {% csrf_token %}
-    {{ login_form }}
+    {{ login_form.as_p }}
     <button class="btn btn-primary" type="submit">Login</button>
   </form>
   <p class="text-center">Don't have an account? <a href="./signup">Create an account</a>.</p>

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap5',
     'polls.apps.PollsConfig',
     'notes.apps.NotesConfig',
     'login.apps.LoginConfig',

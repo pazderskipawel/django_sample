@@ -1,10 +1,11 @@
+{% extends 'index.html' %}
+{% block content %}
 <h1>Wikipedia szukanko</h1>
-
 <!-- search form -->
 <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Search">
+  {{ form }}
+  <button type="submit" value="Search"> Wyszukaj </button>
 </form>
 
 <!-- search results -->
@@ -12,3 +13,4 @@
   <h2>{{ result.term }}</h2>
   {{ result.extract|safe }}
 {% endfor %}
+{% endblock %}
