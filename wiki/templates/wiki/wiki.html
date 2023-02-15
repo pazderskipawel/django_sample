@@ -1,16 +1,32 @@
 {% extends 'index.html' %}
 {% block content %}
-<h1>Wikipedia szukanko</h1>
-<!-- search form -->
-<form method="post">
-  {% csrf_token %}
-  {{ form }}
-  <button type="submit" value="Search"> Wyszukaj </button>
-</form>
+<div style="float: left;">
+  <h1>Wiki (pl) search</h1>
+  <!-- search form -->
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" value="Search"> Wyszukaj </button>
+  </form>
+</div>
+<div style="float: right;">
 
-<!-- search results -->
-{% for result in results %}
-  <h2>{{ result.term }}</h2>
-  {{ result.extract|safe }}
-{% endfor %}
+  <h1>Your queries</h1>
+    <ul>
+      {% if terms == ' ' %}
+        <li>You are not logged in</li>
+      {% else %}
+      {% for term in terms %}
+        <li>{{ term.term }}</li>
+      {% endfor %}
+      {% endif %}
+    </ul>
+</div>
+<div style="clear:both;">
+    <!-- search results -->
+  {% for result in results %}
+    <h2>{{ result.term }}</h2>
+    {{ result.extract|safe }}
+  {% endfor %}
+</div>
 {% endblock %}

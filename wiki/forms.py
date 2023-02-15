@@ -2,4 +2,4 @@ from django import forms
 
 
 class SearchForm(forms.Form):
-    query = forms.CharField(label='Wyszukaj w Wikipedii (pl)')
+    query = forms.CharField(label='Search in polish wikipedia: ')
