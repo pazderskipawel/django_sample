@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block content %}
+<div style="text-align:center"><h1>Welcome to Django-Sandbox</h1></div><br>
+<div class="card" style="width: 20%; float:left;">
+  <div class="card-body">
+    <h5 class="card-title">Notes</h5>
+    <p class="card-text">App that allows to read and write simple notes</p>
+    <a href="../notes" class="card-link">Visit Notes</a>
+  </div>
+</div>
+<div class="card" style="width: 20%; float:left;" >
+  <div class="card-body">
+    <h5 class="card-title">Polls</h5>
+    <p class="card-text">App from official django tutorial</p>
+    <a href="../polls" class="card-link">Visit Polls</a>
+  </div>
+</div>
+<div class="card" style="width: 20%; float:left;">
+  <div class="card-body">
+    <h5 class="card-title">Weather</h5>
+    <p class="card-text">App that shows current weather form given city using openweather map API</p>
+    <a href="../weather" class="card-link">Visit Weather</a>
+  </div>
+</div>
+<div class="card" style="width: 20%; float:left;">
+  <div class="card-body">
+    <h5 class="card-title">Wiki</h5>
+    <p class="card-text">App shows 1st paragraph form wikipedia from every combination of given string using Wikipedia API. It also stores and shows your previous searches (login required).</p>
+    <a href="../wiki" class="card-link">Visit Wiki</a>
+  </div>
+</div>
+{% endblock %}
+

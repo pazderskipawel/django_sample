@@ -19,10 +19,11 @@ from django.urls import include, path
 from notes.views import home_view, new_note_form
 from login.views import signup_view, signin_view, signout_view
 from weather.views import weather_view
-from twitchchat.views import twchat_view
 from wiki.views import wiki_view
+from .views import mainpage_view
 
 urlpatterns = [
+    path('', mainpage_view),
     path('polls/', include('polls.urls')),
     path('login/', signin_view),
     path('login/signup', signup_view),
@@ -31,6 +32,5 @@ urlpatterns = [
     path('notes/newnote', new_note_form),
     path('admin/', admin.site.urls),
     path('weather/', weather_view),
-    path('twitchchat/', twchat_view),
     path('wiki/', wiki_view)
 ]

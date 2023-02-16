@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'notes.apps.NotesConfig',
     'login.apps.LoginConfig',
     'weather.apps.WeatherConfig',
-    'twitchchat.apps.TwitchchatConfig',
     'wiki.apps.WikiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
