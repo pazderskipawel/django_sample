@@ -6,12 +6,18 @@
   <form method="post">
     {% csrf_token %}
     {{ form }}
-    <button type="submit" value="Search"> Wyszukaj </button>
+    <button class="btn btn-primary btn-sm" type="submit" value="Search"> Search </button>
   </form>
 </div>
-<div style="float: right;">
-  <h1>Your words</h1>
-  <table>
+
+
+<div style="float: right; width:50%;">
+  <table class="table table-light table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Your words</th>
+    </tr>
+  </thead>
     <tbody>
       {% if terms == ' ' %}
       <tr><td>You are not logged in</td></tr>
@@ -31,12 +37,14 @@
     searchBar.value = term;
   }
 </script>
-<div style="clear:both;">
-    <!-- search results -->
-  {% for result in results %}
-    <h2>{{ result.term }}</h2>
-    {{ result.extract|safe }}
-  {% endfor %}
+<div style="clear:both;"></div>
+{% for result in results %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ result.term }}</h5>
+    <p class="card-text">{{ result.extract|safe }}</p>
+  </div>
 </div>
+{% endfor %}
 {% endblock %}
 

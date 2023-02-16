@@ -1,7 +1,7 @@
 {% extends 'notes/index.html' %}
 {%block content%}
-<h1>Twoje notatki</h1>
-<table border='1'>
+<h1>Your notes</h1>
+<table class="table table-striped">
 {% for x in all %}
     <tr>
       <td>{{ x.title }}</td>
@@ -10,5 +10,5 @@
     </tr>
   {% endfor %}
 </table>
-<a href="./newnote"> Dodaj notatkę</a>
+<a href="./newnote" class="btn btn-outline-primary btn-lg" role="button"> Dodaj notatkę</a>
 {%endblock%}

@@ -1,9 +1,14 @@
 {% extends 'notes/index.html' %}
 {%block content%}
-<h1>dodaj notatkę</h1>
+<h1>Add new note</h1>
 <form method='POST'> {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
+    {{ form.title.label }}
+    {{ form.title }}
+    {{ form.date.label }}
+    {{ form.date }}
+    {{ form.content.label }}
+    {{ form.content }}
+    <input class="btn btn-primary" type="submit" value="Save">
 </form>
-<a href="./"> pokaż notatki</a>
+<a href="./" role="button" class="btn btn-outline-primary">Show notes</a>
 {%endblock%}

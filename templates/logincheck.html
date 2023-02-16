@@ -1,6 +1,6 @@
 {%if request.user.is_authenticated %}
-Witaj {{request.user}}<br>
-<a class="nav-link" href="../login/signout">Logout</a>
+Hello, {{request.user}} &emsp;<a class="btn btn-outline-primary btn-sm" href="../login/signout" role="button">Logout</a>
 {%else%}
-<h3>Jesteś niezalogowany<a class="nav-link" href="../login/">Login</a></h3>
+You are not logged in &emsp;<a class="btn btn-outline-primary btn-sm" href="../login/" role="button">Login</a>
 {%endif%}
+<br>
