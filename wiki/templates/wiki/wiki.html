@@ -10,18 +10,27 @@
   </form>
 </div>
 <div style="float: right;">
-
-  <h1>Your queries</h1>
-    <ul>
+  <h1>Your words</h1>
+  <table>
+    <tbody>
       {% if terms == ' ' %}
-        <li>You are not logged in</li>
+      <tr><td>You are not logged in</td></tr>
       {% else %}
       {% for term in terms %}
-        <li>{{ term.term }}</li>
+        <tr onclick="copyToSearchBar('{{ term.term }}')">
+          <td>{{ term.term }}</td>
+        </tr>
       {% endfor %}
       {% endif %}
-    </ul>
+    </tbody>
+  </table>
 </div>
+<script>
+  function copyToSearchBar(term) {
+    var searchBar = document.getElementById('id_query');
+    searchBar.value = term;
+  }
+</script>
 <div style="clear:both;">
     <!-- search results -->
   {% for result in results %}
@@ -30,3 +39,4 @@
   {% endfor %}
 </div>
 {% endblock %}
+

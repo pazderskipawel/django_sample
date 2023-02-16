@@ -13,12 +13,13 @@ def wiki_view(request):
         if form.is_valid():
             query = form.cleaned_data['query']
             words = query.split()  # split the query into a list of search terms
+            if request.user.is_authenticated:
+                save_words(words, userId)
             terms = []
             for i in range(1, len(words) + 1):
                 for comb in combinations(words, i):
                     terms.append(" ".join(comb).capitalize())
-            if request.user.is_authenticated:
-                save_term(terms, userId)
+
             # https://www.mediawiki.org/wiki/API:Query <- documentation
             url = f"https://pl.wikipedia.org/w/api.php?action=query&format=json&utf8=1&formatversion=2&prop=extracts&exintro=1&explaintext=1&titles={'|'.join(terms)}"
             response = requests.get(url)
@@ -46,15 +47,16 @@ def wiki_view(request):
         # display the form
         form = SearchForm()
         results = []
+    #show saved searches
     if request.user.is_authenticated:
         userterms = UserTerm.objects.filter(userId=userId)
     else: userterms = ' '
     return render(request, 'wiki/wiki.html', {'form': form, 'results': results, 'terms':userterms})
 
-def save_term(term, userid):
+def save_words(term, userid):
     oldterm_query = UserTerm.objects.filter(userId=userid).order_by('-id').first()
     if oldterm_query is not None:
-        oldterm = oldterm_query.term.split(', ')
+        oldterm = oldterm_query.term.split(' ')
     else:
         oldterm = []
     term = [field.strip() for field in term]
@@ -63,5 +65,5 @@ def save_term(term, userid):
     else:
         print(term)
         print(oldterm)
-        userterm = UserTerm(userId=userid, term=", ".join(term))
+        userterm = UserTerm(userId=userid, term=" ".join(term))
         userterm.save()
