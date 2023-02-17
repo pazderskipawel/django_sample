@@ -1,0 +1,24 @@
+  <table class="table table-light table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Your words</th>
+    </tr>
+  </thead>
+    <tbody>
+      {% if terms == ' ' %}
+      <tr><td>You are not logged in</td></tr>
+      {% else %}
+      {% for term in terms %}
+        <tr onclick="copyToSearchBar('{{ term.term }}')">
+          <td>{{ term.term }}</td>
+        </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+<script>
+  function copyToSearchBar(term) {
+    var searchBar = document.getElementById('id_query');
+    searchBar.value = term;
+  }
+</script>

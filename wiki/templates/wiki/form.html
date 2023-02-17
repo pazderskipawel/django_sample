@@ -1,0 +1,7 @@
+<h1>Wiki (pl) search</h1>
+  <!-- search form -->
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button class="btn btn-primary btn-sm" type="submit" value="Search"> Search </button>
+  </form>

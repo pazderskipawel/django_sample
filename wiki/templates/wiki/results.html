@@ -1,0 +1,8 @@
+{% for result in results %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ result.term }}</h5>
+    <p class="card-text">{{ result.extract|safe }}</p>
+  </div>
+</div>
+{% endfor %}

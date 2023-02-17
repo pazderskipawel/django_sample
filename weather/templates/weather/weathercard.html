@@ -1,0 +1,14 @@
+{% if country_code and lon and lat and temp and pressure %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{country_code}}</h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Longitude: {{lon}}</li>
+            <li class="list-group-item">Latitude: {{lat}}</li>
+            <li class="list-group-item">Temperature: {{temp}}</li>
+            <li class="list-group-item">Pressure: {{pressure}}</li>
+          </ul>
+        </div>
+    {% endif %}
