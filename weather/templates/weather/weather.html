@@ -1,6 +1,11 @@
 {% extends 'index.html' %}
 {% block content %}
+{% if request.user.is_authenticated %}
 {% include 'weather/form.html' %}
 <br>
 {% include 'weather/weathercard.html' %}
+{% else %}
+<h1>You must be logged in to be able to access this!</h1>
+<h4>Click <a href="../login/">here</a> to log in</h4>
+{% endif %}
 {% endblock %}
