@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -8,19 +9,34 @@ from .models import Note
 # Create your views here.
 
 def new_note_form(request):
-    form = NewNoteForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        form = NewNoteForm()
+    if request.user.is_authenticated:
+
+        form = NewNoteForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.userid = request.user.id
+            f.save()
+
+    else:
+        messages.info(request, "You must be logged in to access this content.")
+        form = ' '
     context = {
         'form': form
     }
-    return render(request, "notes/newnote.html", context)
+    template_name = "notes/newnote.html"
+    return render(request, template_name , context)
 
 
 def home_view(request):
-    note = Note.objects.all()
+    if request.user.is_authenticated:
+
+        note = Note.objects.filter(userid = request.user.id)
+
+    else:
+        messages.info(request, "You must be logged in to access this content.")
+        note = ' '
+    template_name = "notes/newnote.html"
     context = {
         'all': note
     }
-    return render(request, "notes/notes.html", context)
+    return render(request, template_name, context)

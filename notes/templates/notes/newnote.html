@@ -1,5 +1,6 @@
 {% extends 'notes/index.html' %}
 {%block content%}
+{% if request.user.is_authenticated %}
 <h1>Add new note</h1>
 <form method='POST'> {% csrf_token %}
     {{ form.title.label }}
@@ -11,4 +12,7 @@
     <input class="btn btn-primary" type="submit" value="Save">
 </form>
 <a href="./" role="button" class="btn btn-outline-primary">Show notes</a>
+{% else %}
+{% include 'login/nologin.html' %}
+{% endif %}
 {%endblock%}

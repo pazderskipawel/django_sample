@@ -1,5 +1,6 @@
 {% extends 'notes/index.html' %}
 {%block content%}
+{% if request.user.is_authenticated %}
 <h1>Your notes</h1>
 <table class="table table-striped">
 {% for x in all %}
@@ -11,4 +12,7 @@
   {% endfor %}
 </table>
 <a href="./newnote" class="btn btn-outline-primary btn-lg" role="button"> Dodaj notatkę</a>
+{% else %}
+{% include 'login/nologin.html' %}
+{% endif %}
 {%endblock%}
