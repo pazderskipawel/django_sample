@@ -1,43 +1,59 @@
 {% extends 'index.html' %}
+{% load bootstrap_icons %}
 {% block content %}
-<div style="text-align:center"><h1>Welcome to Django-Sandbox</h1></div><br>
-<div class="row row-cols-1 row-cols-md-2 g-4">
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Notes</h5>
-        <p class="card-text">App that allows to read and write simple notes</p>
+<style>
+.carousel-image{
+opacity:0.4;
+}</style>
+<div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="carousel-image">{% bs_icon 'journal' extra_classes="d-block w-100" size='25em'%}</div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Notes</h5>
+        <p>App that allows to read and write simple notes</p>
         <a href="../notes" class="card-link">Visit Notes</a>
       </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card" >
-      <div class="card-body">
-        <h5 class="card-title">Polls</h5>
-        <p class="card-text">App from official django tutorial</p>
+    <div class="carousel-item">
+      <div class="carousel-image">{% bs_icon 'card-checklist' extra_classes="d-block w-100" size='25em'%}</div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Polls</h5>
+        <p>App from official django tutorial</p>
         <a href="../polls" class="card-link">Visit Polls</a>
       </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Weather</h5>
-        <p class="card-text">App that shows current weather form given city using openweather map API</p>
+    <div class="carousel-item">
+      <div class="carousel-image">{% bs_icon 'rainbow' extra_classes="d-block w-100" size='25em'%}</div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Weather</h5>
+        <p>App that shows current weather form given city using openweather map API</p>
         <a href="../weather" class="card-link">Visit Weather</a>
       </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Wiki</h5>
-        <p class="card-text">App shows 1st paragraph form wikipedia from every combination of given string using Wikipedia API. It also stores and shows your previous searches (login required).</p>
+    <div class="carousel-item">
+      <div class="carousel-image">{% bs_icon 'wikipedia' extra_classes="d-block w-100" size='25em'%}</div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Wiki</h5>
+        <p>App shows 1st paragraph form wikipedia from every combination of given string using Wikipedia API. It also stores and shows your previous searches (login required).</p>
         <a href="../wiki" class="card-link">Visit Wiki</a>
       </div>
     </div>
   </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 {% endblock %}
 
