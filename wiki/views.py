@@ -54,16 +54,16 @@ def wiki_view(request):
     return render(request, 'wiki/wiki.html', {'form': form, 'results': results, 'terms':userterms})
 
 def save_words(term, userid):
-    oldterm_query = UserTerm.objects.filter(userId=userid).order_by('-id').first()
+    term = " ".join(term)
+    print(term)
+    oldterm_query = UserTerm.objects.filter(userId=userid, term=term).first()
     if oldterm_query is not None:
-        oldterm = oldterm_query.term.split(' ')
+        oldterm = oldterm_query.term
     else:
         oldterm = []
-    term = [field.strip() for field in term]
+    print(oldterm)
     if oldterm == term:
         print('same')
     else:
-        print(term)
-        print(oldterm)
-        userterm = UserTerm(userId=userid, term=" ".join(term))
+        userterm = UserTerm(userId=userid, term=term)
         userterm.save()

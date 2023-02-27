@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bootstrap5',
+    'django_bootstrap_icons',
     'polls.apps.PollsConfig',
     'notes.apps.NotesConfig',
     'login.apps.LoginConfig',

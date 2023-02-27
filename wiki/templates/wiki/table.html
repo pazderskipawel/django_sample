@@ -1,7 +1,8 @@
+  {% load bootstrap_icons %}
   <table class="table table-light table-hover">
     <thead>
     <tr>
-      <th scope="col">Your words <button class="btn btn-sm" title="select row to copy to searchbar">?</button></th>
+      <th scope="col">Your words <i title="select row to copy to searchbar">{% bs_icon 'question-circle' %}</i></th>
     </tr>
   </thead>
     <tbody>
@@ -9,7 +10,7 @@
       <tr><td>You are not logged in</td></tr>
       {% else %}
       {% for term in terms %}
-        <tr onclick="copyToSearchBar('{{ term.term }}')">
+        <tr onclick="copyToSearchBar('{{ term.term }}')" style="cursor: pointer;">
           <td>{{ term.term }}</td>
         </tr>
       {% endfor %}

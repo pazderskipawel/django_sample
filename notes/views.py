@@ -35,8 +35,8 @@ def home_view(request):
     else:
         messages.info(request, "You must be logged in to access this content.")
         note = ' '
-    template_name = "notes/newnote.html"
+    template_name = "notes/notes.html"
     context = {
-        'all': note
+        'user_notes': note
     }
     return render(request, template_name, context)

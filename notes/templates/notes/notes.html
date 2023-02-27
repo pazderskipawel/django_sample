@@ -2,15 +2,22 @@
 {%block content%}
 {% if request.user.is_authenticated %}
 <h1>Your notes</h1>
-<table class="table table-striped">
-{% for x in all %}
-    <tr>
-      <td>{{ x.title }}</td>
-      <td>{{ x.date }}</td>
-      <td>{{ x.content }}</td>
-    </tr>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+{% for note in user_notes %}
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ note.title }}</h5>
+        <p class="card-text">{{ note.content }}</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">{{ note.date }}</small>
+      </div>
+    </div>
+  </div>
   {% endfor %}
-</table>
+</div>
+<br>
 <a href="./newnote" class="btn btn-outline-primary btn-lg" role="button"> Dodaj notatkę</a>
 {% else %}
 {% include 'login/nologin.html' %}
